@@ -4,3 +4,6 @@
 [submodule "quote-site-reborn"]
 	path = quote-site-reborn
 	url = https://github.com/BazVed-Ltd/quote-site-reborn
+[submodule "quote-site-frontend"]
+	path = quote-site-frontend
+	url = https://github.com/BazVed-Ltd/quote-site-frontend.git

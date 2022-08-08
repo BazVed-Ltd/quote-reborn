@@ -10,13 +10,10 @@ services:
   backend:
     build:
       context: quote-site-reborn
-      target: development
     depends_on:
       - mongodb
     volumes:
     - attachments:/usr/src/app/attachments/
-    ports:
-      - 5000:5000
 
   mongodb:
     image: mongo:5.0
