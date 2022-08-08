@@ -1,0 +1,6 @@
+[submodule "quote-bot-reborn"]
+	path = quote-bot-reborn
+	url = https://github.com/BazVed-Ltd/quote-bot-reborn
+[submodule "quote-site-reborn"]
+	path = quote-site-reborn
+	url = https://github.com/BazVed-Ltd/quote-site-reborn
