@@ -1,0 +1,27 @@
+services:
+  bot:
+    build:
+      context: quote-bot-reborn
+    depends_on:
+      - mongodb
+    volumes:
+    - attachments:/usr/src/app/attachments/
+
+  backend:
+    build:
+      context: quote-site-reborn
+      target: development
+    volumes:
+    - attachments:/usr/src/app/attachments/
+
+  mongodb:
+    image: mongo:5.0
+    volumes:
+      - mongodb-data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongodb
+      - MONGO_INITDB_ROOT_PASSWORD=mongodb
+
+volumes:
+  mongodb-data:
+  attachments:
