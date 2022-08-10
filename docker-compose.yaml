@@ -7,6 +7,8 @@ services:
     volumes:
       - attachments:/usr/src/app/attachments/
     environment:
+      - MONGODB_DB_NAME=${MONGODB_DB_NAME:-quote}
+      - MONGODB_URI=mongodb://mongodb:mongodb@mongodb:27017
       - VK_TOKEN=${VK_TOKEN}
 
   backend:
@@ -14,6 +16,9 @@ services:
       context: quote-site-reborn
     depends_on:
       - mongodb
+    environment:
+      - MONGODB_DB_NAME=${MONGODB_DB_NAME:-quote}
+      - MONGODB_URI=mongodb://mongodb:mongodb@mongodb:27017
     volumes:
     - attachments:/usr/src/app/attachments/
 
@@ -28,12 +33,17 @@ services:
   frontend:
     build:
       context: quote-site-frontend
+      args:
+        - MODE=${NGINX_MODE}
     depends_on:
       - backend
     ports:
-      - 3000:80
+      - ${HTTP_PORT:-80}:80
+      - ${HTTPS_PORT:-443}:443
     volumes:
       - attachments:/data/attachments
+      - ${SSL_CERTIFICATE:-./ssl/empty.crt}:/ssl/site.crt
+      - ${SSL_CERTIFICATE_KEY:-./ssl/empty.key}:/ssl/site.key
 
 volumes:
   mongodb-data:
